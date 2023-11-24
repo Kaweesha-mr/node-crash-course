@@ -44,4 +44,18 @@ else{
 
 
 
+if(fs.existsSync('./docs/deleteme.txt')){
+
+    //unlink is used to delete a file
+    fs.unlink('./docs/deleteme.txt',(err)=>{
+        if(err){
+            console.log(err);
+        }
+        console.log('file deleted');
+    })
+}
+
+
+
+
 //calback dunctions are used mainly in async codes to do something after the operation is completed
