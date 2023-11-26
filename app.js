@@ -43,6 +43,20 @@ app.get('/add-blog', (req, res) => {
 
   //!end of passing data to the database
 
+
+
+  //?retrive all data from database
+  Blog.find()
+  .then((result)=>{
+    res.send(result)
+  })
+  .catch((err)=>{
+    console.log(err)
+  }
+  )
+
+
+
 app.get('/', (req, res) => {
   const blogs = [
     {title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur'},
