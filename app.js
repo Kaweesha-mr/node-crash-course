@@ -1,13 +1,23 @@
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 // express app
 const app = express();
 
+//connect to mongodb 
+const dburi = 'mongodb+srv://Kaweesha:vutqek-8qinxu-Cugzyx@node.amig8cu.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(dburi,{useNewUrlParser:true, useUnifiedTopology:true})
+.then((result)=>console.log('connected to db'))
+.catch((err)=>console.log(err))
+
+
+
+
 // listen for requests
 app.listen(3000);
 
-app.use(express.static(public));
+// app.use(express.static(public));
 //third party midleware
 app.use(morgan('dev'));
 
