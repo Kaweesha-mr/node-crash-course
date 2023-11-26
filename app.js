@@ -12,22 +12,22 @@ app.listen(3000);
 
 app.get('/', (req,res) => {
     //res.send('<p>Home page </P>');
-    res.render('index');
+    res.render('index', {title: "Home"});
 })
 
 app.get('/ABOUT', (req,res) => {
-    res.render('about');
+    res.render('about',{title: "About Us"});
 
 })
-
-//redirect
-app.get('/about-us', (req,res) => {
-    res.redirect('/about');
+app.get('/blogs/create', (req,res)=>{
+    res.render('create',{title: "New Blog"});
 })
-   
 //404 pages
 app.use((req,res)=>{
-    res.render('404');
+    res.render('404',{title: "File Not found"});
 })
+
+
+
 
 
