@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 // express app
 const app = express();
@@ -6,12 +7,9 @@ const app = express();
 // listen for requests
 app.listen(3000);
 
-app.use((req,res) => {
-    console.log("New Request is made");
-    console.log("Host :",req.hostname);
-    console.log("Path :",req.path);
-    console.log("Method :",req.method);
-});
+
+//third party midleware
+app.use(morgan('dev'));
 
 // register view engine
 app.set('view engine', 'ejs');
