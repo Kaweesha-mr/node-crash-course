@@ -46,13 +46,21 @@ app.get('/add-blog', (req, res) => {
 
 
   //?retrive all data from database
-  Blog.find()
+app.get('/all-blogs',(req,res)=>{  Blog.find()
   .then((result)=>{
     res.send(result)
   })
   .catch((err)=>{
     console.log(err)
   }
+  )})
+//!get data from specif id in database
+  app.get('/single-blog',(req,res)=>{ 
+     Blog.findById('5f9b6b7b9b0b6e1f0c4b3b1e') 
+  .then((result)=>{
+    res.send(result)
+  }
+  )}
   )
 
 
