@@ -7,7 +7,7 @@ const app = express();
 // listen for requests
 app.listen(3000);
 
-
+app.use(express.static(public));
 //third party midleware
 app.use(morgan('dev'));
 
