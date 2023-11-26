@@ -6,6 +6,13 @@ const app = express();
 // listen for requests
 app.listen(3000);
 
+app.use((req,res) => {
+    console.log("New Request is made");
+    console.log("Host :",req.hostname);
+    console.log("Path :",req.path);
+    console.log("Method :",req.method);
+});
+
 // register view engine
 app.set('view engine', 'ejs');
 // app.set('views', 'myviews');
