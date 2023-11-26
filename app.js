@@ -8,14 +8,10 @@ const app = express();
 //connect to mongodb 
 const dburi = 'mongodb+srv://Kaweesha:vutqek-8qinxu-Cugzyx@node.amig8cu.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(dburi,{useNewUrlParser:true, useUnifiedTopology:true})
-.then((result)=>console.log('connected to db'))
+.then((result)=>app.listen(3000))
 .catch((err)=>console.log(err))
 
 
-
-
-// listen for requests
-app.listen(3000);
 
 // app.use(express.static(public));
 //third party midleware
