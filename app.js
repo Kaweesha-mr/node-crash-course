@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
+const { result } = require('lodash');
 
 // express app
 const app = express();
@@ -18,6 +19,10 @@ mongoose.connect(dburi,{useNewUrlParser:true, useUnifiedTopology:true})
 // app.use(express.static(public));
 //third party midleware
 app.use(morgan('dev'));
+
+//this will help to get the form post data as a object names req.body so that it easy to handle
+//
+app.use(express.urlencoded({extended:true}))
 
 // register view engine
 app.set('view engine', 'ejs');
@@ -46,6 +51,21 @@ app.get('/blogs',(req,res)=>{
     })
 }
 )
+
+app.post('/blogs',(req,res)=>{
+  
+
+  //past data to database using port
+  const blog = new Blog(req.body);
+  blog.save()
+  .then((result)=>{
+    res.redirect('/blogs')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+
+})
 
 app.get('/blogs/create', (req, res) => {
   res.render('create', { title: 'Create a new blog' });
