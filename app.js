@@ -53,8 +53,6 @@ app.get('/blogs',(req,res)=>{
 )
 
 app.post('/blogs',(req,res)=>{
-  
-
   //past data to database using port
   const blog = new Blog(req.body);
   blog.save()
@@ -69,11 +67,27 @@ app.post('/blogs',(req,res)=>{
 
 
 //retrive and show data in html
-app.get('blogs/:id',(req,res)=>{
+app.get('/blogs/:id',(req,res)=>{
   const id = req.params.id;
   Blog.findById(id)
   .then((result)=>{
     res.render('details',{blog:result,title:'Blog Details'})
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+}
+)
+
+
+app.delete('/blogs/:id',(req,res)=>{
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+  .then((result)=>{
+
+    //this will send the json data to the browser
+    //becouse when ajax used cant send the redirect
+    res.json({redirect:'/blogs'})
   })
   .catch((err)=>{
     console.log(err);
