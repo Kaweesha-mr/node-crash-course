@@ -49,9 +49,7 @@ const blog_delete = (req,res) =>{
     const id = req.params.id;
     Blog.findByIdAndDelete(id)
     .then((result)=>{
-
-
-  
+        
       //this will send the json data to the browser
       //becouse when ajax used cant send the redirect
       res.json({redirect:'/'})
