@@ -35,10 +35,11 @@ const blog_details = (req,res) => {
     const id = req.params.id;
     Blog.findById(id)
     .then((result)=>{
+        console.log(result);
       res.render('details',{blog:result,title:'Blog Details'})
     })
     .catch((err)=>{
-      console.log(err);
+      res.status(404).render('404',{title:'Blog not found'})
     })
 
 }
@@ -48,6 +49,8 @@ const blog_delete = (req,res) =>{
     const id = req.params.id;
     Blog.findByIdAndDelete(id)
     .then((result)=>{
+
+
   
       //this will send the json data to the browser
       //becouse when ajax used cant send the redirect
